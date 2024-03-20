@@ -8,6 +8,12 @@ namespace StructureStudent
         public short ID;
         public DateTime DateOfBirth;
 
+        public Student (string studentName, short studentId, DateTime dob )
+        {
+            Name = studentName;
+            ID = studentId;
+            DateOfBirth = dob;
+        }
         public string DisplayStudent()
         {
             return $"Name: {Name}, ID: {ID}, Date of Birth: {DateOfBirth.ToShortDateString()}";
@@ -43,7 +49,7 @@ namespace StructureStudent
 
             foreach (Student student in students)
             {
-                Console.WriteLine($"Name: {student.Name}, ID: {student.ID}, Date of Birth: {student.DateOfBirth.ToShortDateString()}");
+                student.DisplayStudent();
             }
         }
 
@@ -80,11 +86,13 @@ namespace StructureStudent
 
         public static Student GetStudentInfo(int number)
         {
-            Student student = new Student();
+            
             Console.Write($"Please enter the name of student {number} ");
-            student.Name = Console.ReadLine();
-            student.ID = GetShortNumber($"Please enter the id of student {number} ");
-            student.DateOfBirth = GetDateOfBirth(number);
+            String name = Console.ReadLine();
+            short id = GetShortNumber($"Please enter the id of student {number} ");
+            DateTime dob = GetDateOfBirth(number);
+
+            Student student = new Student(name, id, dob);
 
             return student;
         }
